@@ -6,7 +6,7 @@
 #include <functional>
 
 
-void Mult(const int& dim, int** const& a, int** const& b, int** const& c, const int& row, const int& num_rows) {
+void Mult(int const& dim, int** const& a, int** const& b, int** const& c, int const& row, int const& num_rows) {
 	for (int r = row; r < row + num_rows; ++r) {
 		for (int i = 0; i < dim; ++i) {
 			int sum = 0;
@@ -18,7 +18,7 @@ void Mult(const int& dim, int** const& a, int** const& b, int** const& c, const 
 	}
 }
 
-void MatMultiply(const int& num_processors, const int& dim, int** const& a, int** const& b, int** const& c) {
+void MatMultiply(int const& num_processors, int const& dim, int** const& a, int** const& b, int** const& c) {
 	std::vector<std::thread> pool;
 
 	const int chunk_size = dim / num_processors;
@@ -60,8 +60,8 @@ int main() {
 
 		auto end_timestamp = std::chrono::system_clock::now();
 
-		std::cout << "For " << p << " number of processors, nanoseconds elapsed was: ";
-		std::cout << (std::chrono::duration_cast<std::chrono::nanoseconds>(end_timestamp - begin_timestamp)).count();
+		std::cout << "For " << p << " number of processors, milliseconds elapsed was: ";
+		std::cout << (std::chrono::duration_cast<std::chrono::milliseconds>(end_timestamp - begin_timestamp)).count();
 	}
 
 	for (int i = 0; i < dim; ++i) {
